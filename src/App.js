@@ -1,16 +1,14 @@
 import React from 'react';
-import Navbar from './components/Navbar';
 import Header from './components/Header';
-import AboutSkillsBlock from './components/AboutSkillsBlock';
+// import Hero from './components/Hero'; // retiré temporairement
 
-export default function App() {
+function App() {
   return (
     <>
-      <Navbar />
       <Header />
-      <main>
-        <AboutSkillsBlock />
-      </main>
+      {/* <Hero /> */}
     </>
   );
 }
+
+export default App;

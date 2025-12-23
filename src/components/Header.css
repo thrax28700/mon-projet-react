@@ -1,54 +1,222 @@
-/* Header.css - header sur fond noir, texte blanc, responsive */
-
-.hero-compact {
-  width: 100%;
-  min-height: 220px; /* hauteur raisonnable pour header */
-  display: block;
-  position: relative;
-  background-color: #000; /* fond noir demandé */
-  color: #fff;
-  overflow: hidden;
-  box-sizing: border-box;
+:root{
+  --header-height:64px;
+  --burger-size:48px;
+  --burger-bg:#000000;
+  --burger-bar:#ffffff;
+  --cta-red:#e11d48;
+  --max-width:1400px;
 }
 
-/* Contenu centré */
-.hero-inner {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 20px;
-  box-sizing: border-box;
-}
-
-/* Texte du header */
-.hero-content {
-  text-align: left;
-  color: #fff;
-}
-.hero-title {
-  font-size: 22px;
+/* reset de base */
+html,body {
+  height: 100%;
   margin: 0;
-  font-weight: 800;
-}
-.hero-sub {
-  font-size: 14px;
-  margin: 4px 0 0;
-  font-weight: 600;
-  opacity: 0.9;
+  padding: 0;
+  background: #000;
 }
 
-/* Si tu veux que le header soit plus grand sur desktop, ajuste min-height */
-@media (min-width: 1200px) {
-  .hero-compact { min-height: 120px; }
-  .hero-title { font-size: 24px; }
+/* header fixe et transparent au-dessus de tout */
+.site-header, header.site-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: var(--header-height) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
+  z-index: 100000 !important;
+  background: transparent !important;
 }
 
-/* Sur mobile, texte centré et plus compact */
+/* container interne */
+.header-inner {
+  width: 100% !important;
+  max-width: var(--max-width) !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  box-sizing: border-box !important;
+}
+
+/* forcer suppression de tout fond blanc sur header */
+.site-header, .site-header * {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* nav desktop unique visible par défaut */
+.header-desktop-nav,
+.nav.desktop,
+.navbar,
+.main-nav {
+  display: flex !important;
+  gap: 18px !important;
+  align-items: center !important;
+}
+
+/* masquer toute nav qui pourrait être rendue ailleurs (hero etc.) */
+.hero-compact .nav,
+.hero-compact .header-desktop-nav,
+.hero-compact .navbar,
+.hero-compact .main-nav,
+.hero-compact nav {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* liens nav desktop */
+.header-desktop-nav a,
+.nav.desktop a,
+.navbar a,
+.main-nav a {
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  padding: 8px 10px !important;
+  border-radius: 6px !important;
+}
+
+/* bouton burger dans le header */
+#header-burger {
+  display: none !important;
+  position: absolute !important;
+  top: calc((var(--header-height) - var(--burger-size)) / 2) !important;
+  right: 16px !important;
+  width: var(--burger-size) !important;
+  height: var(--burger-size) !important;
+  padding: 6px !important;
+  background: var(--burger-bg) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35) !important;
+  z-index: 100001 !important;
+}
+
+/* SVG du burger */
+#header-burger svg { display: block !important; width: 36px !important; height: 28px !important; pointer-events: none !important; }
+#header-burger svg rect { fill: var(--burger-bar) !important; }
+
+/* HERO commence sous le header pour éviter chevauchement */
+.hero-compact {
+  width: 100% !important;
+  min-height: 520px !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  color: #ffffff !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
+  margin: 0 !important;
+  padding-top: calc(var(--header-height) + 0px) !important;
+}
+
+/* overlay hero */
+.hero-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(rgba(0,0,0,0.56), rgba(0,0,0,0.40)) !important;
+  z-index: 0 !important;
+}
+
+/* contenu hero */
+.hero-inner {
+  position: relative !important;
+  z-index: 10 !important;
+  width: 100% !important;
+  max-width: var(--max-width) !important;
+  margin: 0 auto !important;
+  padding: 40px 20px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+
+.hero-content { text-align: center !important; color: #fff !important; max-width: 1000px !important; padding: 0 16px !important; }
+
+.hero-line {
+  margin: 0 !important;
+  font-size: 44px !important;
+  line-height: 1.06 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.3px !important;
+  color: #ffffff !important;
+  margin-bottom: 6px !important;
+}
+
+/* CTA */
+.hero-cta { display: flex !important; justify-content: center !important; margin-top: 14px !important; }
+
+.btn {
+  display: inline-block !important;
+  padding: 12px 22px !important;
+  border-radius: 10px !important;
+  text-decoration: none !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.22) !important;
+  transition: transform .12s ease, box-shadow .12s ease !important;
+}
+
+/* forcer couleur du bouton primaire */
+.btn-primary {
+  background-color: #e11d48 !important;
+  color: #ffffff !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+/* breakpoint : masquer nav desktop et afficher burger */
+@media (max-width: 1200px) {
+  .header-desktop-nav,
+  .navbar,
+  .main-nav,
+  .nav.desktop {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  #header-burger {
+    display: inline-flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 4px !important;
+  }
+
+  .hero-inner { padding-top: 20px !important; }
+  .hero-line { font-size: 36px !important; }
+  .hero-compact { min-height: 420px !important; padding: 24px 12px !important; }
+}
+
+/* petits écrans */
 @media (max-width: 900px) {
-  .hero-inner { justify-content: center; padding: 12px 14px; }
-  .hero-content { text-align: center; }
-  .hero-title { font-size: 18px; }
-  .hero-sub { font-size: 13px; }
+  #header-burger { top: calc((var(--header-height) - 36px) / 2) !important; right: 10px !important; width: 44px !important; height: 36px !important; padding: 6px !important; }
+  #header-burger svg { width: 30px !important; height: 24px !important; }
+  .hero-line { font-size: 28px !important; }
+  .btn { padding: 10px 16px !important; border-radius: 8px !important; }
+  .hero-compact { min-height: 360px !important; padding: 20px 10px !important; }
+}
+
+/* grands écrans */
+@media (min-width: 1600px) {
+  .hero-line { font-size: 56px !important; }
 }
