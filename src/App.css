@@ -1,0 +1,5 @@
+/* override minimal pour header sans supprimer l'image */
+header.hero-compact {
+  background-color: transparent;
+  color: #fff;
+}

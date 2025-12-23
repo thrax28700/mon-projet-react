@@ -1,0 +1,54 @@
+/* Header.css - header sur fond noir, texte blanc, responsive */
+
+.hero-compact {
+  width: 100%;
+  min-height: 220px; /* hauteur raisonnable pour header */
+  display: block;
+  position: relative;
+  background-color: #000; /* fond noir demandé */
+  color: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Contenu centré */
+.hero-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  box-sizing: border-box;
+}
+
+/* Texte du header */
+.hero-content {
+  text-align: left;
+  color: #fff;
+}
+.hero-title {
+  font-size: 22px;
+  margin: 0;
+  font-weight: 800;
+}
+.hero-sub {
+  font-size: 14px;
+  margin: 4px 0 0;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* Si tu veux que le header soit plus grand sur desktop, ajuste min-height */
+@media (min-width: 1200px) {
+  .hero-compact { min-height: 120px; }
+  .hero-title { font-size: 24px; }
+}
+
+/* Sur mobile, texte centré et plus compact */
+@media (max-width: 900px) {
+  .hero-inner { justify-content: center; padding: 12px 14px; }
+  .hero-content { text-align: center; }
+  .hero-title { font-size: 18px; }
+  .hero-sub { font-size: 13px; }
+}

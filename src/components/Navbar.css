@@ -1,0 +1,144 @@
+/* Navbar.css - header noir, burger visible, menu mobile noir opaque */
+
+/* Structure principale */
+.site-nav {
+  width: 100%;
+  background: #000; /* fond noir pour toute la barre */
+  color: #fff;
+  position: relative;
+  z-index: 1200;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+/* Conteneur centré */
+.nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+/* Marque gauche */
+.nav-brand .brand-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.4px;
+}
+
+/* Liens desktop droite */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 140ms ease, transform 140ms ease;
+}
+.nav-links a:hover,
+.nav-links a:focus {
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* Burger toggle (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Trois traits blancs bien visibles */
+.nav-toggle .bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+/* Menu mobile opaque, fond noir */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #000;
+  color: #fff;
+  padding: 12px 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  z-index: 1150;
+  box-sizing: border-box;
+}
+.mobile-menu a {
+  display: block;
+  padding: 10px 8px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+}
+.mobile-menu a + a { margin-top: 6px; }
+
+/* Variante flottante du menu (pour .nav-links.open) */
+.nav-links.open {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: absolute;
+  top: 100%;
+  right: 16px;
+  background: #000;
+  padding: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  z-index: 1150;
+}
+.nav-links.open a { display: block; }
+
+/* Empêcher qu'un enfant impose un fond blanc */
+.site-nav *, .nav-inner * {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+/* Responsive : afficher burger en mobile/tablet */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .mobile-menu { display: none; }
+  .mobile-menu.open { display: block; }
+  .nav-links.open { right: 12px; }
+}
+
+/* Focus visible */
+.nav-links a:focus, .nav-toggle:focus, .brand-link:focus {
+  outline: 3px solid rgba(255,255,255,0.12);
+  outline-offset: 2px;
+}
+
+/* Animation ouverture */
+.nav-links.open, .mobile-menu.open {
+  animation: navFadeIn 140ms ease;
+}
+@keyframes navFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
